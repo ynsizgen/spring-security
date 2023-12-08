@@ -1,5 +1,6 @@
 package com.example.security.basicauth.service;
 
+import com.example.security.basicauth.config.PasswordEncoderConfig;
 import com.example.security.basicauth.dto.CreateUserRequest;
 import com.example.security.basicauth.model.User;
 import com.example.security.basicauth.repository.UserRepository;
@@ -12,10 +13,10 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoderConfig passwordEncoder;
 
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoderConfig passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -26,10 +27,10 @@ public class UserService {
 
     public User createUser(CreateUserRequest request) {
         User newUser = User.builder()
-                .name(request.name())
-                .username(request.username())
-                .password(passwordEncoder.encode(request.password()))
-                .authorities(request.authorities())
+                .name(request.getName())
+                .username(request.getUsername())
+                .password(passwordEncoder.bCryptPasswordEncoder().encode(request.getPassword()))
+                .authorities(request.getAuthorities())
                 .isEnabled(true)
                 .accountNonExpired(true)
                 .accountNonLocked(true)
