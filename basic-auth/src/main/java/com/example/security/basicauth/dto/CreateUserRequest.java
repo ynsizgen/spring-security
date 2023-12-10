@@ -11,12 +11,11 @@ import java.util.Set;
 
 
 @Builder
-@Data
-public class CreateUserRequest{
+public record CreateUserRequest(String name,
+        String username,
+        String password,
+        Set<Role> authorities
+){
 
-    private String name;
-    private String username;
-    private String password;
-    private Set<Role> authorities;
 
 }

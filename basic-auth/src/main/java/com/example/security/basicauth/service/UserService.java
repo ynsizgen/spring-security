@@ -13,10 +13,9 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoderConfig passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-
-    public UserService(UserRepository userRepository, PasswordEncoderConfig passwordEncoder) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -27,10 +26,10 @@ public class UserService {
 
     public User createUser(CreateUserRequest request) {
         User newUser = User.builder()
-                .name(request.getName())
-                .username(request.getUsername())
-                .password(passwordEncoder.bCryptPasswordEncoder().encode(request.getPassword()))
-                .authorities(request.getAuthorities())
+                .name(request.name())
+                .username(request.username())
+                .password(passwordEncoder.encode(request.password()))
+                .authorities(request.authorities())
                 .isEnabled(true)
                 .accountNonExpired(true)
                 .accountNonLocked(true)

@@ -25,7 +25,7 @@ public class BasicAuthApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		createDummyData();
 	}
 
 	private void createDummyData() {
@@ -37,18 +37,23 @@ public class BasicAuthApplication implements CommandLineRunner {
 				.authorities(Set.of(Role.ROLE_ADMIN, Role.ROLE_USER))
 				.build();
 
+		userService.createUser(request);
+
 		CreateUserRequest request1 = CreateUserRequest.builder()
 				.name("ahmet")
 				.username("ahmet")
 				.password("1234")
 				.authorities(Set.of(Role.ROLE_USER))
 				.build();
+		userService.createUser(request1);
+
 		CreateUserRequest request2 = CreateUserRequest.builder()
 				.name("ali")
 				.username("ali")
 				.password("1234")
 				.authorities(Set.of(Role.ROLE_MODERATOR))
 				.build();
+		userService.createUser(request2);
 	}
 
 
