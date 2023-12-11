@@ -1,13 +1,13 @@
-package com.example.jwtauth;
+package com.example.jwttoken;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JwtAuthApplication {
+public class JwtTokenApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JwtAuthApplication.class, args);
+		SpringApplication.run(JwtTokenApplication.class, args);
 	}
 
 }

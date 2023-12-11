@@ -5,7 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/basic-auth/pom.xml" />
-        <option value="$PROJECT_DIR$/jwt-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/jwt-token/pom.xml" />
       </list>
     </option>
   </component>
