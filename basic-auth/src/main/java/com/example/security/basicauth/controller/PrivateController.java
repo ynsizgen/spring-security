@@ -18,7 +18,12 @@ public class PrivateController {
         return "Hello from private user endpoint";
     }
 
-    @GetMapping("private")
+    @GetMapping("mod")
+    public String helloWorldModPrivate(){
+        return "Hello from private mod endpoint";
+    }
+
+    @GetMapping("admin")
     public String helloWorldAdminPrivate(){
         return "Hello from private admin endpoint";
     }
