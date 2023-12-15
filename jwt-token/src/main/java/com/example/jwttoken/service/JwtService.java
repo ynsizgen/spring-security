@@ -20,10 +20,10 @@ public class JwtService {
     @Value("${jwt-key}")
     private String SECRET;
 
-    public String generateToken(String userName){
+    public String generateToken(String username){
         Map<String,Object> claims = new HashMap<>();
-        claims.put("can","wia");
-        return createToken(claims,userName);
+        //claims.put("pass","word");
+        return createToken(claims,username);
     }
 
     public Boolean validateToken(String token, UserDetails userDetails){
@@ -43,7 +43,7 @@ public class JwtService {
         return claims.getExpiration();
     }
 
-    private String extractUser(String token){
+    public String extractUser(String token){
         Claims claims = Jwts
                 .parserBuilder()
                 .setSigningKey(getSignKey())
@@ -57,8 +57,8 @@ public class JwtService {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userName)
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 + 60 +2)) //2mins token date
+                .setIssuedAt(new Date(System.currentTimeMillis())) // when is token created
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 2)) //2 mins token date
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

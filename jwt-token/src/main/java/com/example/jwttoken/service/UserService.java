@@ -35,18 +35,24 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-    public User createUser(CreateUserRequest request) {
-        User newUser = User.builder()
-                .name(request.name())
-                .username(request.username())
-                .password(passwordEncoder.encode(request.password()))
-                .authorities(request.authorities())
-                .isEnabled(true)
-                .accountNonExpired(true)
-                .accountNonLocked(true)
-                .credentialsNonExpired(true)
-                .build();
-        return userRepository.save(newUser);
+    public boolean createUser(CreateUserRequest request) {
+        try {
+            User newUser = User.builder()
+                    .name(request.name())
+                    .username(request.username())
+                    .password(passwordEncoder.encode(request.password()))
+                    .authorities(request.authorities())
+                    .isEnabled(true)
+                    .accountNonExpired(true)
+                    .accountNonLocked(true)
+                    .credentialsNonExpired(true)
+                    .build();
+            userRepository.save(newUser);
+            return true;
+        }catch (Exception e){
+            e.getMessage();
+            return false;
+        }
     }
 
 

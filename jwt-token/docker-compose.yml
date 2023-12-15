@@ -11,4 +11,5 @@ services:
       MYSQL_USER: example
       MYSQL_PASSWORD: 1234
     ports:
-      - '3306:3306'
+      - "3306:3306"
+
